@@ -435,8 +435,8 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
       box.querySelectorAll('.opt').forEach(function(o){o.classList.remove('sel')}); b.classList.add('sel');
       var q=box.dataset.q; A[q]=b.dataset.v;
       setTimeout(function(){
-        if(q==='niche')show('q2');
-        else if(q==='stage')show('q3');
+        if(q==='niche'){px('QuizQ1',{niche:A.niche});show('q2')}
+        else if(q==='stage'){px('QuizQ2',{niche:A.niche,stage:A.stage});show('q3')}
         else if(A.pay==='free'){px('QuizFree',{niche:A.niche,stage:A.stage}); $('#fScripts').href=C.TG_FREE; $('#fName').textContent='«'+C.TG_FREE_NAME+'»'; show('free')}
         else{px('QuizQualified',{niche:A.niche,stage:A.stage,pay:A.pay}); analyse()}
       },230);
