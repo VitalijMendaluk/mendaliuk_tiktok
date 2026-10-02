@@ -197,6 +197,10 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
 .host b{display:block;font-size:1.05rem;line-height:1.15}
 .host span:not(.ring){font-size:.78rem;color:var(--ink2);font-weight:700}
 @media (max-height:700px){.host{display:none}}
+.next{list-style:none;margin-top:.7rem;display:flex;flex-direction:column;gap:.4rem}
+.next li{display:flex;gap:.55rem;align-items:center;font-size:.88rem;font-weight:600;color:var(--ink2)}
+.next li b{color:var(--ink)}
+.next li i{font-style:normal;flex:none;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:.75rem;display:flex;align-items:center;justify-content:center}
 @media (max-height:600px){.hide-sm{display:none!important}}
 </style>
 </head>
@@ -346,12 +350,17 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   <!-- ===================== 6. ДЯКУЮ ===================== -->
   <section class="screen" id="s-thanks">
     <div class="grow mid">
-      <div class="big">🎉</div>
-      <h2 style="text-align:center;margin-top:.6rem"><span id="tName"></span>, місце за тобою!</h2>
+      <div class="big hide-sm">🎉</div>
+      <h2 style="text-align:center;margin-top:.5rem"><span id="tName"></span>, місце за тобою!</h2>
       <div class="when"><b id="tWhen"></b><span id="tVia"></span></div>
-      <div class="homework"><b>✍️ Щоб розбір дав максимум</b>до дзвінка запиши одним реченням — хто твій ідеальний клієнт і скільки він тобі платить.</div>
+      <ol class="next">
+        <li><i>1</i><span>Протягом <b id="tReply"></b> напишу тобі в <b id="tMsgr"></b></span></li>
+        <li><i>2</i><span>Відповідай <b>«+»</b> — так я закріплю за тобою час</span></li>
+        <li><i>3</i><span>Надішлю посилання на дзвінок і зустрінемось</span></li>
+      </ol>
+      <div class="homework"><b>✍️ Щоб розбір дав максимум</b>запиши одним реченням: хто твій ідеальний клієнт і скільки він тобі платить.</div>
     </div>
-    <div class="bottom"><a class="cta" id="tScripts" target="_blank" rel="noopener">📥 Забрати подарунки в Telegram</a></div>
+    <div class="bottom"><button class="cta" id="tCal" type="button">📅 Додати в календар</button><a class="ghost" id="tScripts" target="_blank" rel="noopener">🎁 Забрати подарунки в Telegram</a></div>
   </section>
 
   <!-- ===================== 7. БЕЗКОШТОВНИЙ ШЛЯХ ===================== -->
@@ -488,6 +497,25 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   var msgr='Telegram';
   $('#msgr').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;$$('#msgr button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');msgr=b.dataset.v});
 
+  /* ---------- Календар ---------- */
+  function setCal(iso,t){
+    var y=+iso.slice(0,4),mo=+iso.slice(5,7),dd=+iso.slice(8,10),h=+t.split(':')[0],mi=+t.split(':')[1];
+    var guess=Date.UTC(y,mo-1,dd,h,mi), p=partsIn(C.BOOK_TZ,new Date(guess));
+    var off=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour%24,+p.minute)-guess, start=new Date(guess-off), end=new Date(start.getTime()+60*60000);
+    var f=function(x){return x.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')};
+    var title='Розбір TikTok з '+C.AUTHOR_NAME, det='Особистий розбір твого TikTok · '+C.CALL_FORMAT+'. Посилання на дзвінок надішлю в месенджер.';
+    var apple=/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+    $('#tCal').onclick=function(){
+      px('AddToCalendar');
+      if(apple){
+        var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//quiz//UA','BEGIN:VEVENT','UID:'+eventId+'@quiz','DTSTAMP:'+f(new Date()),'DTSTART:'+f(start),'DTEND:'+f(end),'SUMMARY:'+title,'DESCRIPTION:'+det,'BEGIN:VALARM','TRIGGER:-PT1H','ACTION:DISPLAY','DESCRIPTION:'+title,'END:VALARM','END:VEVENT','END:VCALENDAR'].join('\r\n');
+        var a=document.createElement('a'); a.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics); a.download='rozbir-tiktok.ics'; document.body.appendChild(a); a.click(); a.remove();
+      } else {
+        window.open('https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+f(start)+'/'+f(end)+'&details='+encodeURIComponent(det),'_blank');
+      }
+    };
+  }
+
   /* ---------- Відправка ---------- */
   var sending=false;
   $('#form').addEventListener('submit',function(e){
@@ -498,13 +526,16 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     if($('#hp').value)return;
     $('#formMsg').textContent=''; sending=true; var btn=$('#submit'); btn.disabled=true; btn.firstChild.textContent='Бронюю… ';
     var d=days[+daySel.value];
-    var payload={name:name,phone:code.value+phone,messenger:msgr,day:d.label,date:d.iso,time:timeSel.value,tz:C.BOOK_TZ,userTZ:userTZ,niche:A.niche,stage:A.stage,pay:A.pay,utm:utm,eventId:eventId,page:location.href};
+    var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:''};
+    var fbc=ck('_fbc')||(utm.fbclid?'fb.1.'+Date.now()+'.'+utm.fbclid:'');
+    var payload={fbp:ck('_fbp'),fbc:fbc,name:name,phone:code.value+phone,messenger:msgr,day:d.label,date:d.iso,time:timeSel.value,tz:C.BOOK_TZ,userTZ:userTZ,niche:A.niche,stage:A.stage,pay:A.pay,utm:utm,eventId:eventId,page:location.href};
     fetch(C.LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true})
       .then(function(r){if(!r.ok)throw 0;
         px('Lead',{content_name:'tiktok_razbor',niche:A.niche,stage:A.stage,pay:A.pay},true); px('Schedule',{content_name:'tiktok_razbor'},true);
         $('#tName').textContent=name; $('#tWhen').textContent=d.label+' о '+timeSel.value;
-        $('#tVia').textContent='за центральноєвропейським часом · '+C.CALL_FORMAT+', '+C.CALL_LENGTH+'. Напишу в '+msgr+' протягом '+C.REPLY_WITHIN+', щоб підтвердити.';
-        $('#tScripts').href=C.TG_FREE; hist=['thanks']; show('thanks',false);
+        $('#tVia').textContent='центральноєвропейський час · '+C.CALL_FORMAT+' · '+C.CALL_LENGTH;
+        $('#tReply').textContent=C.REPLY_WITHIN; $('#tMsgr').textContent=msgr;
+        $('#tScripts').href=C.TG_FREE; setCal(d.iso,timeSel.value); hist=['thanks']; show('thanks',false);
       })
       .catch(function(){sending=false;btn.disabled=false;btn.firstChild.textContent='Забронювати розбір ';$('#formMsg').textContent='Не вдалося відправити. Перевір інтернет і спробуй ще раз.'});
   });
