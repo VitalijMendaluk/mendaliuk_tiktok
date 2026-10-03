@@ -313,7 +313,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     </div>
     <div class="bottom">
       <div class="scar"><span class="dot"></span><span id="scar"></span></div>
-      <button class="cta shine" data-go="book">Обрати час розбору <span class="arr">→</span></button>
+      <button class="cta shine" data-go="book">Записатись на розбір <span class="arr">→</span></button>
     </div>
   </section>
 
@@ -323,11 +323,6 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     <h2>Забронюй свій розбір</h2>
     <div class="meet"><span id="mF"></span><span id="mL"></span><span>🎁 0 €</span></div>
     <form class="f" id="form" novalidate autocomplete="on">
-      <div class="row">
-        <select class="sel" id="day" aria-label="День"></select>
-        <select class="sel" id="time" aria-label="Час" style="flex:0 0 7rem"></select>
-      </div>
-      <div class="tz">Час — центральноєвропейський (Варшава, Берлін, Прага)</div>
       <input class="inp" id="name" placeholder="Твоє ім'я" autocomplete="given-name" maxlength="40">
       <div>
         <div class="lbl">Де тобі зручно написати?</div>
@@ -336,6 +331,14 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
       <div class="row">
         <select class="sel" id="code" aria-label="Код країни" style="flex:0 0 7rem"></select>
         <input class="inp" id="phone" type="tel" inputmode="tel" placeholder="Номер телефону" autocomplete="tel-national" maxlength="16">
+      </div>
+      <div style="display:none">
+        <div class="lbl">Зручний час <span style="font-weight:600;color:var(--mute)">— можна обрати пізніше</span></div>
+        <div class="row">
+          <select class="sel" id="day" aria-label="День"></select>
+          <select class="sel" id="time" aria-label="Час" style="flex:0 0 8.6rem"></select>
+        </div>
+        <div class="tz" style="margin-top:.3rem">Центральноєвропейський час (Варшава, Берлін, Прага)</div>
       </div>
       <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="fend">
@@ -355,12 +358,12 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
       <div class="when"><b id="tWhen"></b><span id="tVia"></span></div>
       <ol class="next">
         <li><i>1</i><span>Протягом <b id="tReply"></b> напишу тобі в <b id="tMsgr"></b></span></li>
-        <li><i>2</i><span>Відповідай <b>«+»</b> — так я закріплю за тобою час</span></li>
-        <li><i>3</i><span>Надішлю посилання на дзвінок і зустрінемось</span></li>
+        <li><i>2</i><span>Відповідай і обери <b>зручний для тебе час</b></span></li>
+        <li><i>3</i><span>Надішлю посилання — підключишся <b>одним натиском</b></span></li>
       </ol>
       <div class="homework"><b>✍️ Щоб розбір дав максимум</b>запиши одним реченням: хто твій ідеальний клієнт і скільки він тобі платить.</div>
     </div>
-    <div class="bottom"><button class="cta" id="tCal" type="button">📅 Додати в календар</button><a class="ghost" id="tScripts" target="_blank" rel="noopener">🎁 Забрати подарунки в Telegram</a></div>
+    <div class="bottom"><button class="cta" id="tCal" type="button" style="display:none">📅 Додати в календар</button><a class="cta" id="tScripts" target="_blank" rel="noopener">🎁 Забрати подарунки в Telegram</a></div>
   </section>
 
   <!-- ===================== 7. БЕЗКОШТОВНИЙ ШЛЯХ ===================== -->
@@ -409,8 +412,8 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   $$('#revs img.pst').forEach(function(im,k){im.onerror=function(){var v=document.createElement('video');v.muted=true;v.playsInline=true;v.preload='metadata';v.src=C.REVIEWS[k].video+'#t=0.6';im.replaceWith(v)}});
   $$('.qp').forEach(function(e){e.textContent=C.STUDENTS+' учні з '+C.COUNTRIES+' країн уже пройшли цей шлях'});
   $('#scar').textContent='Кожен розбір проводжу особисто — тому місць небагато';
-  $('#meetLine').textContent=C.CALL_LENGTH.replace('~','≈ ')+' · '+C.CALL_FORMAT;
-  $('#mF').textContent='📹 '+C.CALL_FORMAT.replace(' або ',' / '); $('#mL').textContent='⏱ '+C.CALL_LENGTH;
+  $('#meetLine').textContent=C.CALL_LENGTH.replace('~','≈ ')+' · '+C.CALL_FORMAT.toLowerCase();
+  $('#mF').textContent='📹 '+C.CALL_FORMAT; $('#mL').textContent='⏱ '+C.CALL_LENGTH;
 
   /* ---------- Навігація ---------- */
   function show(id,push){
@@ -482,8 +485,8 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     days.push({i:i,label:(i===0?'Сьогодні':i===1?'Завтра':WD[wd])+', '+(+p.day)+'.'+p.month,iso:p.year+'-'+p.month+'-'+p.day});
   }
   var daySel=$('#day'), timeSel=$('#time');
-  daySel.innerHTML='<option value="">Обери день</option>'+days.map(function(d,k){return '<option value="'+k+'">'+d.label+'</option>'}).join('');
-  function fillTimes(){var d=days[+daySel.value];timeSel.innerHTML='<option value="">Час</option>'+C.BOOK_TIMES.filter(function(t){return !d||d.i!==0||+t.split(':')[0]>nowH+1}).map(function(t){return '<option>'+t+'</option>'}).join('')}
+  daySel.innerHTML='<option value="">Будь-який день</option>'+days.map(function(d,k){return '<option value="'+k+'">'+d.label+'</option>'}).join('');
+  function fillTimes(){var d=days[+daySel.value];timeSel.innerHTML='<option value="">Будь-коли</option>'+C.BOOK_TIMES.filter(function(t){return !d||d.i!==0||+t.split(':')[0]>nowH+1}).map(function(t){return '<option>'+t+'</option>'}).join('')}
   fillTimes();
   daySel.addEventListener('change',function(){fillTimes();daySel.classList.remove('err')});
   timeSel.addEventListener('change',function(){timeSel.classList.remove('err')});
@@ -521,21 +524,21 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   $('#form').addEventListener('submit',function(e){
     e.preventDefault(); if(sending)return;
     var name=$('#name').value.trim(), phone=$('#phone').value.replace(/\D/g,''), ok=true;
-    [['#day',daySel.value!==''],['#time',timeSel.value!==''],['#name',name.length>=2],['#phone',phone.length>=6&&phone.length<=14]].forEach(function(x){$(x[0]).classList.toggle('err',!x[1]);if(!x[1])ok=false});
+    [['#name',name.length>=2],['#phone',phone.length>=6&&phone.length<=14]].forEach(function(x){$(x[0]).classList.toggle('err',!x[1]);if(!x[1])ok=false});
     if(!ok){$('#formMsg').textContent='Заповни, будь ласка, виділені поля';return}
     if($('#hp').value)return;
     $('#formMsg').textContent=''; sending=true; var btn=$('#submit'); btn.disabled=true; btn.firstChild.textContent='Бронюю… ';
-    var d=days[+daySel.value];
+    var d=daySel.value!==''?days[+daySel.value]:null, t=timeSel.value;
     var ck=function(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?m[1]:''};
     var fbc=ck('_fbc')||(utm.fbclid?'fb.1.'+Date.now()+'.'+utm.fbclid:'');
-    var payload={fbp:ck('_fbp'),fbc:fbc,name:name,phone:code.value+phone,messenger:msgr,day:d.label,date:d.iso,time:timeSel.value,tz:C.BOOK_TZ,userTZ:userTZ,niche:A.niche,stage:A.stage,pay:A.pay,utm:utm,eventId:eventId,page:location.href};
+    var payload={fbp:ck('_fbp'),fbc:fbc,name:name,phone:code.value+phone,messenger:msgr,day:d?d.label:'',date:d?d.iso:'',time:t,tz:C.BOOK_TZ,userTZ:userTZ,niche:A.niche,stage:A.stage,pay:A.pay,utm:utm,eventId:eventId,page:location.href};
     fetch(C.LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true})
       .then(function(r){if(!r.ok)throw 0;
         px('Lead',{content_name:'tiktok_razbor',niche:A.niche,stage:A.stage,pay:A.pay},true); px('Schedule',{content_name:'tiktok_razbor'},true);
-        $('#tName').textContent=name; $('#tWhen').textContent=d.label+' о '+timeSel.value;
-        $('#tVia').textContent='центральноєвропейський час · '+C.CALL_FORMAT+' · '+C.CALL_LENGTH;
+        $('#tName').textContent=name; $('#tWhen').textContent='Твій розбір заброньовано';
+        $('#tVia').textContent=C.CALL_FORMAT+' · '+C.CALL_LENGTH+' · '+'час домовимось у '+msgr;
         $('#tReply').textContent=C.REPLY_WITHIN; $('#tMsgr').textContent=msgr;
-        $('#tScripts').href=C.TG_FREE; setCal(d.iso,timeSel.value); hist=['thanks']; show('thanks',false);
+        $('#tScripts').href=C.TG_FREE;  hist=['thanks']; show('thanks',false);
       })
       .catch(function(){sending=false;btn.disabled=false;btn.firstChild.textContent='Забронювати розбір ';$('#formMsg').textContent='Не вдалося відправити. Перевір інтернет і спробуй ще раз.'});
   });

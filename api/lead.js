@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
     `📞 ${esc(phone)} · ${esc(b.messenger)}`,
     `👉 <a href="${links[b.messenger] || links.Telegram}">Написати в ${esc(b.messenger)}</a>`,
     ``,
-    `📅 <b>${esc(b.day)} о ${esc(b.time)}</b> (Варшава)`,
+    (b.day ? `📅 <b>${esc(b.day)}${b.time ? ' о ' + esc(b.time) : ', час будь-який'}</b> (Варшава)` : `📅 <b>Час не обрано — домовитись у месенджері</b>`),
     `🌍 Пояс клієнта: ${esc(b.userTZ)}`,
     ``,
     `💼 Ніша: ${esc(NICHE[b.niche] || b.niche)}`,

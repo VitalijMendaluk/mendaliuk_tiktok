@@ -12,7 +12,7 @@ window.CONFIG = {
   COUNTRIES: "11",
   SLOTS_PER_WEEK: 6,
 
-  CALL_FORMAT: "Zoom або Google Meet",
+  CALL_FORMAT: "Відеодзвінок",
   CALL_LENGTH: "~60 хв",
 
   // Відео-відгуки: у папці video файли 1.mp4, 2.mp4, 3.mp4 + обкладинки 1.jpg, 2.jpg, 3.jpg
