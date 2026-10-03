@@ -281,7 +281,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     <div class="roi"><span>💡</span><span><b>Порахуй:</b> скільки тобі платить один клієнт? Кілька клієнтів з TikTok — і вкладення в навчання <b>вже повернулись</b>.</span></div>
     <div class="opts" data-q="pay">
       <button class="opt best" data-v="mentor"><span class="e">🚀</span><span class="t">З наставником <span class="badge">НАЙШВИДШЕ</span><small>особистий план і підтримка, поки не прийдуть клієнти</small></span><span class="rd"></span></button>
-      <button class="opt" data-v="parts"><span class="e">💳</span><span class="t">З наставником, оплата частинами<small>почати зараз — без великої суми одразу</small></span><span class="rd"></span></button>
+      <button class="opt" data-v="parts"><span class="e">💳</span><span class="t">З наставником, оплата частинами<small>почати вже зараз, а платити поступово</small></span><span class="rd"></span></button>
       <button class="opt" data-v="free"><span class="e">🐢</span><span class="t">Сам(а), по безкоштовних відео<small>місяці спроб і помилок, без зворотного зв'язку</small></span><span class="rd"></span></button>
     </div>
     <div class="qproof hide-sm"><span class="stars">★★★★★</span> <span class="qp"></span></div>
@@ -304,11 +304,11 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     <div class="diag cdiag" id="diag"></div>
     <div class="stack cstack">
       <div class="stack-h">
-        <div><b>Особистий розбір твого TikTok</b><small id="meetLine"></small></div>
+        <div><b>Особиста консультація: стратегія TikTok під тебе</b><small id="meetLine"></small></div>
         <div class="price"><b>0 €</b><small>для тебе</small></div>
       </div>
       <ul class="hide-sm">
-        <li><i>1</i><span>Що <b>блокує заявки</b> саме в тебе</span></li>
+        <li><i>1</i><span><b>З чого почати</b> саме тобі — або що зараз блокує заявки</span></li>
         <li><i>2</i><span><b>Стратегія і перші відео</b> під твою нішу</span></li>
         <li><i>3</i><span>Скільки <b>реально заробляти</b> з TikTok</span></li>
       </ul>
@@ -334,7 +334,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
       <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="fend">
         <div class="msg" id="formMsg"></div>
-        <button class="cta shine" id="submit" type="submit">Записатись на розбір <span class="arr">→</span></button>
+        <button class="cta shine" id="submit" type="submit">Записатись на консультацію <span class="arr">→</span></button>
         <div class="under" style="margin-top:0"><span>🤝 Без тиску: якщо не зможу допомогти — чесно скажу</span></div>
       </div>
     </form>
@@ -351,7 +351,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
         <li><i>2</i><span>Відповідай і обери <b>зручний для тебе час</b></span></li>
         <li><i>3</i><span>Надішлю посилання — підключишся <b>одним натиском</b></span></li>
       </ol>
-      <div class="homework"><b>✍️ Щоб розбір дав максимум</b>запиши одним реченням: хто твій ідеальний клієнт і скільки він тобі платить.</div>
+      <div class="homework"><b>✍️ Щоб консультація дала максимум</b>запиши одним реченням: хто твій ідеальний клієнт і скільки він тобі платить.</div>
     </div>
     <div class="bottom"><button class="cta" id="tCal" type="button" style="display:none">📅 Додати в календар</button><a class="cta" id="tScripts" target="_blank" rel="noopener">🎁 Забрати подарунки в Telegram</a></div>
   </section>
@@ -364,7 +364,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
       <h2 style="text-align:center;margin-top:.6rem">Твої 2 подарунки вже чекають</h2>
       <p class="sub" style="text-align:center">Зніми перше відео сьогодні — поки є настрій.</p>
       <div class="diag" style="margin-top:1rem">📌 3 сценарії і відеоурок «Упаковка профілю» закріплені в моєму Telegram-каналі <b id="fName"></b>. Підпишись — і забирай.</div>
-      <div class="diag" style="margin-top:.5rem;font-size:.82rem;color:var(--ink2)">Особисті розбори я проводжу для тих, хто обирає шлях з наставником.</div>
+      <div class="diag" style="margin-top:.5rem;font-size:.82rem;color:var(--ink2)">Особисті консультації я проводжу для тих, хто обирає шлях з наставником.</div>
     </div>
     <div class="bottom">
       <a class="cta" id="fScripts" target="_blank" rel="noopener">📥 Забрати подарунки в Telegram</a>
@@ -400,7 +400,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   }).join('');
   $$('#revs img.pst').forEach(function(im,k){im.onerror=function(){var v=document.createElement('video');v.muted=true;v.playsInline=true;v.preload='metadata';v.src=C.REVIEWS[k].video+'#t=0.6';im.replaceWith(v)}});
   $$('.qp').forEach(function(e){e.textContent=C.STUDENTS+' учні з '+C.COUNTRIES+' країн уже пройшли цей шлях'});
-  $('#meetLine').textContent=C.CALL_LENGTH.replace('~','≈ ')+' · '+C.CALL_FORMAT.toLowerCase();
+  $('#meetLine').textContent='онлайн-відеодзвінок · з телефону';
   
 
   /* ---------- Навігація ---------- */
@@ -422,10 +422,10 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     unsure:{n:'Старт з нуля',l:'Пошук ніші',a:'Яку <b>нішу</b> обрати під твій досвід і які 3 відео зняти першими'}
   };
   var STAGE={
-    start:{l:'Старт з нуля',d:'Тобі не потрібні тисячі підписників. Потрібен <b>правильний старт</b> — і заявки можуть прийти вже з перших відео. Як саме — покажу на розборі.'},
-    lowviews:{l:'Мало переглядів',d:'Перегляди ріжуть не алгоритми, а <b>кілька дрібниць</b> у самих відео. Які саме в тебе — побачимо на розборі.'},
-    noclients:{l:'Перегляди без клієнтів',d:'Між твоїми відео і клієнтами <b>бракує одного кроку</b>. Де саме він губиться — покажу на розборі.'},
-    unstable:{l:'Нестабільні клієнти',d:'Тобі бракує <b>системи</b>, яка приносить заявки щотижня, а не «як пощастить». Її ми й збудуємо на розборі.'}
+    start:{l:'Старт з нуля',d:'Тобі не потрібні тисячі підписників. Потрібен <b>правильний старт</b> — і заявки можуть прийти вже з перших відео. Як саме — покажу на консультації.'},
+    lowviews:{l:'Мало переглядів',d:'Перегляди ріжуть не алгоритми, а <b>кілька дрібниць</b> у самих відео. Які саме в тебе — побачимо на консультації.'},
+    noclients:{l:'Перегляди без клієнтів',d:'Між твоїми відео і клієнтами <b>бракує одного кроку</b>. Де саме він губиться — покажу на консультації.'},
+    unstable:{l:'Нестабільні клієнти',d:'Тобі бракує <b>системи</b>, яка приносить заявки щотижня, а не «як пощастить». Її ми й збудуємо на консультації.'}
   };
 
   /* ---------- Відповіді ---------- */
@@ -446,7 +446,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   function analyse(){
     var n=NICHE[A.niche]||NICHE.unsure, s=STAGE[A.stage]||STAGE.start;
     $('#diag').innerHTML='<span class="k">Твій діагноз · '+n.n+'</span>'+s.d;
-    var items=['Ніша: '+n.l,'Етап: '+s.l,'Шукаю вільне місце на розбір'];
+    var items=['Ніша: '+n.l,'Етап: '+s.l,'Шукаю вільне місце на консультацію'];
     $('#checks').innerHTML=items.map(function(t){return '<li><i>✓</i>'+t+'</li>'}).join('');
     $$('.screen').forEach(function(x){x.classList.remove('on')}); $('#s-wait').classList.add('on');
     var li=$$('#checks li'); li.forEach(function(el,k){setTimeout(function(){el.classList.add('on')},350+k*450)});
@@ -523,12 +523,12 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     fetch(C.LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true})
       .then(function(r){if(!r.ok)throw 0;
         px('Lead',{content_name:'tiktok_razbor',niche:A.niche,stage:A.stage,pay:A.pay},true); px('Schedule',{content_name:'tiktok_razbor'},true);
-        $('#tName').textContent=name; $('#tWhen').textContent='Твій розбір заброньовано';
-        $('#tVia').textContent=C.CALL_FORMAT+' · '+C.CALL_LENGTH+' · '+'час домовимось у '+msgr;
+        $('#tName').textContent=name; $('#tWhen').textContent='Консультацію заброньовано';
+        $('#tVia').textContent='Онлайн-відеодзвінок · час домовимось у '+msgr;
         $('#tReply').textContent=C.REPLY_WITHIN; $('#tMsgr').textContent=msgr;
         $('#tScripts').href=C.TG_FREE;  hist=['thanks']; show('thanks',false);
       })
-      .catch(function(){sending=false;btn.disabled=false;btn.firstChild.textContent='Записатись на розбір ';$('#formMsg').textContent='Не вдалося відправити. Перевір інтернет і спробуй ще раз.'});
+      .catch(function(){sending=false;btn.disabled=false;btn.firstChild.textContent='Записатись на консультацію ';$('#formMsg').textContent='Не вдалося відправити. Перевір інтернет і спробуй ще раз.'});
   });
 })();
 </script>
