@@ -201,6 +201,11 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
 .next li{display:flex;gap:.55rem;align-items:center;font-size:.88rem;font-weight:600;color:var(--ink2)}
 .next li b{color:var(--ink)}
 .next li i{font-style:normal;flex:none;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+.cdiag{margin-top:0;font-size:.86rem;padding:.55rem .75rem}
+.cstack{margin-top:.5rem;padding:.6rem .75rem}
+.cstack ul{margin-top:.4rem;gap:.28rem}
+.cstack li{font-size:.84rem}
+#s-book .f{margin-top:.6rem;gap:.5rem}
 @media (max-height:600px){.hide-sm{display:none!important}}
 </style>
 </head>
@@ -275,9 +280,9 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     <p class="sub">Від цього залежить, який формат я тобі запропоную</p>
     <div class="roi"><span>💡</span><span><b>Порахуй:</b> скільки тобі платить один клієнт? Кілька клієнтів з TikTok — і вкладення в навчання <b>вже повернулись</b>.</span></div>
     <div class="opts" data-q="pay">
-      <button class="opt best" data-v="mentor"><span class="e">🚀</span><span class="t">З наставником <span class="badge">НАЙШВИДШЕ</span><small>особистий план і підтримка до результату</small></span><span class="rd"></span></button>
-      <button class="opt" data-v="parts"><span class="e">💳</span><span class="t">З наставником, оплата частинами<small>почати зараз, платити поступово</small></span><span class="rd"></span></button>
-      <button class="opt" data-v="free"><span class="e">🐢</span><span class="t">Самостійно і безкоштовно<small>повільніше, методом спроб і помилок</small></span><span class="rd"></span></button>
+      <button class="opt best" data-v="mentor"><span class="e">🚀</span><span class="t">З наставником <span class="badge">НАЙШВИДШЕ</span><small>особистий план і підтримка, поки не прийдуть клієнти</small></span><span class="rd"></span></button>
+      <button class="opt" data-v="parts"><span class="e">💳</span><span class="t">З наставником, оплата частинами<small>почати зараз — без великої суми одразу</small></span><span class="rd"></span></button>
+      <button class="opt" data-v="free"><span class="e">🐢</span><span class="t">Сам(а), по безкоштовних відео<small>місяці спроб і помилок, без зворотного зв'язку</small></span><span class="rd"></span></button>
     </div>
     <div class="qproof hide-sm"><span class="stars">★★★★★</span> <span class="qp"></span></div>
   </section>
@@ -292,36 +297,22 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   </section>
 
   <!-- ===================== 4. ОФЕР ===================== -->
-  <section class="screen" id="s-offer">
-    <div class="top"><button class="back" data-back>← Назад</button><span class="okpill">✓ Ти підходиш</span></div>
-    <div class="grow mid">
-      <div class="host hide-sm"><span class="ring"><img class="ava" id="ava2" alt=""></span><div><small>Розбір проводить</small><b id="hName"></b><span id="hBadge"></span></div></div>
-      <h2>Твій шлях до першого клієнта — <span class="hl">коротший, ніж здається</span></h2>
-      <div class="diag" id="diag"></div>
-      <div class="stack">
-        <div class="stack-h">
-          <div><b>Особистий розбір твого TikTok</b><small id="meetLine"></small></div>
-          <div class="price"><b>0 €</b><small>для тебе</small></div>
-        </div>
-        <ul>
-          <li><i>1</i><span>Розберемо, <b>що в тебе вже є</b> і що зараз блокує заявки</span></li>
-          <li><i>2</i><span>Складемо <b>стратегію під твою нішу</b> — які відео знімати першими</span></li>
-          <li><i>3</i><span>Порахуємо, скільки <b>реально заробляти</b> саме тобі з TikTok</span></li>
-        </ul>
-      </div>
-      <div class="guar"><span class="i">🤝</span><span><b>Без тиску і «впарювання».</b> Якщо побачу, що не можу тобі допомогти, — чесно скажу. А стратегію забереш у будь-якому разі.</span></div>
-    </div>
-    <div class="bottom">
-      <div class="scar"><span class="dot"></span><span id="scar"></span></div>
-      <button class="cta shine" data-go="book">Записатись на розбір <span class="arr">→</span></button>
-    </div>
-  </section>
 
   <!-- ===================== 5. ЗАПИС ===================== -->
   <section class="screen" id="s-book">
-    <div class="top"><button class="back" data-back>← Назад</button><span class="step">Останній крок</span></div>
-    <h2>Забронюй свій розбір</h2>
-    <div class="meet"><span id="mF"></span><span id="mL"></span><span>🎁 0 €</span></div>
+    <div class="top"><button class="back" data-back>← Назад</button><span class="okpill">✓ Ти підходиш</span></div>
+    <div class="diag cdiag" id="diag"></div>
+    <div class="stack cstack">
+      <div class="stack-h">
+        <div><b>Особистий розбір твого TikTok</b><small id="meetLine"></small></div>
+        <div class="price"><b>0 €</b><small>для тебе</small></div>
+      </div>
+      <ul class="hide-sm">
+        <li><i>1</i><span>Що <b>блокує заявки</b> саме в тебе</span></li>
+        <li><i>2</i><span><b>Стратегія і перші відео</b> під твою нішу</span></li>
+        <li><i>3</i><span>Скільки <b>реально заробляти</b> з TikTok</span></li>
+      </ul>
+    </div>
     <form class="f" id="form" novalidate autocomplete="on">
       <input class="inp" id="name" placeholder="Твоє ім'я" autocomplete="given-name" maxlength="40">
       <div>
@@ -342,10 +333,9 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
       </div>
       <input class="hp" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="fend">
-        <div class="qproof hide-sm" style="padding-top:0"><span class="stars">★★★★★</span> <span class="qp"></span></div>
         <div class="msg" id="formMsg"></div>
-        <button class="cta" id="submit" type="submit">Забронювати розбір <span class="arr">→</span></button>
-        <div class="under" style="margin-top:0"><span>🔒 Напишу особисто я, не бот. Без спаму.</span></div>
+        <button class="cta shine" id="submit" type="submit">Записатись на розбір <span class="arr">→</span></button>
+        <div class="under" style="margin-top:0"><span>🤝 Без тиску: якщо не зможу допомогти — чесно скажу</span></div>
       </div>
     </form>
   </section>
@@ -400,7 +390,6 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
 
   /* ---------- Наповнення з config.js ---------- */
   var ava=$('#ava'); ava.src=C.AUTHOR_PHOTO; ava.onerror=function(){ava.removeAttribute('src');ava.style.minWidth='2.7rem'};
-  var a2=$('#ava2'); a2.src=C.AUTHOR_PHOTO; $('#hName').textContent=C.AUTHOR_NAME; $('#hBadge').textContent=C.AUTHOR_BADGE.split(' · ')[0]+' · '+C.STUDENTS+' учні з '+C.COUNTRIES+' країн';
   $('#aName').textContent=C.AUTHOR_NAME; $('#aBadge').textContent=C.AUTHOR_BADGE;
   $('#stS').textContent=C.STUDENTS; $('#stC').textContent=C.COUNTRIES;
   $('#proofH').textContent='Відгуки учнів';
@@ -411,9 +400,8 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
   }).join('');
   $$('#revs img.pst').forEach(function(im,k){im.onerror=function(){var v=document.createElement('video');v.muted=true;v.playsInline=true;v.preload='metadata';v.src=C.REVIEWS[k].video+'#t=0.6';im.replaceWith(v)}});
   $$('.qp').forEach(function(e){e.textContent=C.STUDENTS+' учні з '+C.COUNTRIES+' країн уже пройшли цей шлях'});
-  $('#scar').textContent='Кожен розбір проводжу особисто — тому місць небагато';
   $('#meetLine').textContent=C.CALL_LENGTH.replace('~','≈ ')+' · '+C.CALL_FORMAT.toLowerCase();
-  $('#mF').textContent='📹 '+C.CALL_FORMAT; $('#mL').textContent='⏱ '+C.CALL_LENGTH;
+  
 
   /* ---------- Навігація ---------- */
   function show(id,push){
@@ -462,7 +450,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     $('#checks').innerHTML=items.map(function(t){return '<li><i>✓</i>'+t+'</li>'}).join('');
     $$('.screen').forEach(function(x){x.classList.remove('on')}); $('#s-wait').classList.add('on');
     var li=$$('#checks li'); li.forEach(function(el,k){setTimeout(function(){el.classList.add('on')},350+k*450)});
-    setTimeout(function(){show('offer')},1900);
+    setTimeout(function(){px('BookOpen');show('book')},1900);
   }
 
   /* ---------- Відео ---------- */
@@ -540,7 +528,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
         $('#tReply').textContent=C.REPLY_WITHIN; $('#tMsgr').textContent=msgr;
         $('#tScripts').href=C.TG_FREE;  hist=['thanks']; show('thanks',false);
       })
-      .catch(function(){sending=false;btn.disabled=false;btn.firstChild.textContent='Забронювати розбір ';$('#formMsg').textContent='Не вдалося відправити. Перевір інтернет і спробуй ще раз.'});
+      .catch(function(){sending=false;btn.disabled=false;btn.firstChild.textContent='Записатись на розбір ';$('#formMsg').textContent='Не вдалося відправити. Перевір інтернет і спробуй ще раз.'});
   });
 })();
 </script>
