@@ -210,6 +210,17 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
 .frev .proofh{margin:0 0 .35rem;justify-content:center}
 .frev .revs{height:8.5rem;flex:none;min-height:0;max-height:none}
 @media (max-height:640px){.frev{display:none}}
+/* перший екран: рівномірно по висоті + крупніше на високих телефонах */
+#s-hero .grow.mid{justify-content:space-evenly}
+@media (min-height:740px){
+  #s-hero h1{font-size:2.55rem}
+  #s-hero .sub2{font-size:1.02rem}
+  #s-hero .evenif li{font-size:.98rem}
+  #s-hero .evenif{gap:.4rem;margin-top:.55rem}
+  #s-hero .pain{font-size:.98rem;padding:.75rem .9rem}
+  #s-hero .gift{font-size:.92rem;padding:.75rem .9rem}
+  #s-hero .gift .gt{font-size:.98rem}
+}
 @media (max-height:600px){.hide-sm{display:none!important}}
 </style>
 </head>
@@ -224,6 +235,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
     </div>
     <div class="grow mid">
       <div class="pain top"><span class="i">💸</span><span>Клієнти йдуть не до <s>найкращих</s>, а&nbsp;до&nbsp;тих, <em>кого бачать.</em></span></div>
+<div class="hblock">
       <h1>Перші <span class="hl">клієнти з&nbsp;TikTok</span> <span class="mark">за&nbsp;30&nbsp;днів</span></h1>
       <p class="sub2">з телефону, по 15 хвилин на день — <b>навіть якщо:</b></p>
       <ul class="evenif">
@@ -231,6 +243,7 @@ h2{font-size:1.62rem;line-height:1.1;letter-spacing:-.03em;font-weight:800}
         <li><i>✓</i><span><b>починаєш з нуля</b> — ні підписників, ні бази людей</span></li>
         <li><i>✓</i><span><b>не вмієш монтувати</b> — знімаєш одним дублем</span></li>
       </ul>
+      </div>
       <div class="gift">
         <span class="i">🎁</span>
         <span><span class="gt">Твої 2 подарунки наприкінці:</span>3 сценарії відео під твою нішу <span class="plus">+</span> відеоурок «Упаковка профілю, який продає»</span>
